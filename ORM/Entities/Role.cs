@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ORM.Entities
 {
@@ -7,7 +9,14 @@ namespace ORM.Entities
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required, Index(IsUnique = true)]
         public string Name { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
+
+        public Role()
+        {
+            Users = new HashSet<User>();
+        }
     }
 }

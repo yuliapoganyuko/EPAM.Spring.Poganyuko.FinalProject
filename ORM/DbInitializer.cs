@@ -39,11 +39,11 @@ namespace ORM
             context.Users.Add(user2);
             context.SaveChanges();
 
-            var personalPage1 = new PersonalPage
+            var personalPage1 = new Profile
             {
                 User = user1
             };
-            var personalPage2 = new PersonalPage
+            var personalPage2 = new Profile
             {
                 User = user2
             };

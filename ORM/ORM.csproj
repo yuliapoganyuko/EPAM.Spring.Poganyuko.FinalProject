@@ -52,7 +52,7 @@
     <Compile Include="DbInitializer.cs" />
     <Compile Include="EntityModel.cs" />
     <Compile Include="Entities\Like.cs" />
-    <Compile Include="Entities\PersonalPage.cs" />
+    <Compile Include="Entities\Profile.cs" />
     <Compile Include="Entities\Photo.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Tag.cs" />

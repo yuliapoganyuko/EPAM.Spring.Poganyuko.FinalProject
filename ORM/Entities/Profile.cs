@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ORM.Entities
 {
-    public class PersonalPage
+    public class Profile
     {
         [Key, ForeignKey("User")]
         public int UserId { get; set; }
@@ -16,7 +16,7 @@ namespace ORM.Entities
         public virtual ICollection<Photo> Photos { get; set; }
         public virtual ICollection<Like> Likes { get; set; }
 
-        public PersonalPage()
+        public Profile()
         {
             Photos = new HashSet<Photo>();
             Likes = new HashSet<Like>();

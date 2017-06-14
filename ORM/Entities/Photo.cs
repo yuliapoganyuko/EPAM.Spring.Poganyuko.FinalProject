@@ -16,10 +16,10 @@ namespace ORM.Entities
         public DateTime Time { get; set; }
 
         [Required]
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public virtual PersonalPage PersonalPage { get; set; }
+        public virtual Profile Profile { get; set; }
 
         [Required]
         public byte[] Image { get; set; }

@@ -14,10 +14,10 @@ namespace ORM.Entities
         [Required]
         public int UserId { get; set; }
 
-        [ForeignKey("UserId")]
-        public PersonalPage PersonalPage { get; set; }
+       // [ForeignKey("UserId")]
+        public virtual Profile Profile { get; set; }
 
-        [ForeignKey("PhotoId")]
-        public Photo Photo { get; set; }
+       // [ForeignKey("PhotoId")]
+        public virtual Photo Photo { get; set; }
     }
 }

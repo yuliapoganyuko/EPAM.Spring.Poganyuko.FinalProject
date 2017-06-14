@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ORM.Entities
@@ -8,7 +9,7 @@ namespace ORM.Entities
         [Key]
         public int Id { get; set; }
 
-        [Required, MinLength(3), MaxLength(30)]
+        [Required, MinLength(3), MaxLength(30), Index(IsUnique = true)]
         public string Login { get; set; }
 
         [Required, EmailAddress]
@@ -19,8 +20,10 @@ namespace ORM.Entities
 
         [Required]
         public int RoleId { get; set; }
-
+        
         [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }
+
+        public virtual Profile Profile { get; set; }
     }
 }

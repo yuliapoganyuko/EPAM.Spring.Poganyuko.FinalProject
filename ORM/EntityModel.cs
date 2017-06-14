@@ -13,7 +13,7 @@ namespace ORM
         public EntityModel(): base("name=EntityModel") {}
 
         public virtual DbSet<Like> Likes { get; set; }
-        public virtual DbSet<PersonalPage> PersonalPages { get; set; }
+        public virtual DbSet<Profile> PersonalPages { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }

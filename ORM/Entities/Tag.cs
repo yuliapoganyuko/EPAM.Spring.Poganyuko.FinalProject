@@ -8,7 +8,7 @@ namespace ORM.Entities
         [Key]
         public int Id { get; set; }
 
-        [Required, Index(IsUnique = true), MinLength(1), MaxLength(50)]
+        [Required, MinLength(1), MaxLength(50), Index(IsUnique = true)]
         public string Text { get; set; }
     }
 }
