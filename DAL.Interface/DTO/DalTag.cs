@@ -2,17 +2,17 @@
 
 namespace DAL.Interface.DTO
 {
-    public class Tag: IEntity
+    public class DalTag: IEntity
     {
         public int Id { get; set; }
 
         public string Text { get; set; }
 
-        public virtual ICollection<Photo> Photos { get; set; }
+        public virtual ICollection<DalPhoto> Photos { get; set; }
 
-        public Tag()
+        public DalTag()
         {
-            Photos = new List<Photo>();
+            Photos = new List<DalPhoto>();
         }
     }
 }

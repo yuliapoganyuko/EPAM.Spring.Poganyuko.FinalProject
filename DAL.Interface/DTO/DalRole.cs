@@ -1,6 +1,6 @@
 ﻿namespace DAL.Interface.DTO
 {
-    public class Role: IEntity
+    public class DalRole: IEntity
     {
         public int Id { get; set; }
 

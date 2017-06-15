@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace DAL.Interface.Repositories
 {
-    public interface IPhotoRepository: IRepository<Photo>
+    public interface IPhotoRepository: IRepository<DalPhoto>
     {
-        IEnumerable<Like> GetLikesForPhoto(int photoId);
+        IEnumerable<DalLike> GetLikesForPhoto(int photoId);
 
-        IEnumerable<Tag> GetTagsForPhoto(int photoId);
+        IEnumerable<DalTag> GetTagsForPhoto(int photoId);
 
-        void AddNewLike(Like like);
+        void AddNewLike(DalLike like);
 
-        void AddNewTag(Tag tag);
+        void AddNewTag(DalTag tag);
 
-        void RemoveLike(Like like);
+        void RemoveLike(DalLike like);
     }
 }

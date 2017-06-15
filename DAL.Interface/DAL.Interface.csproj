@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\Like.cs" />
-    <Compile Include="DTO\Photo.cs" />
-    <Compile Include="DTO\Profile.cs" />
-    <Compile Include="DTO\Role.cs" />
-    <Compile Include="DTO\Tag.cs" />
-    <Compile Include="DTO\User.cs" />
+    <Compile Include="DTO\DalLike.cs" />
+    <Compile Include="DTO\DalPhoto.cs" />
+    <Compile Include="DTO\DalProfile.cs" />
+    <Compile Include="DTO\DalRole.cs" />
+    <Compile Include="DTO\DalTag.cs" />
+    <Compile Include="DTO\DalUser.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />

@@ -1,6 +1,6 @@
 ﻿namespace DAL.Interface.DTO
 {
-    public class Like: IEntity
+    public class DalLike: IEntity
     {
         public int Id { get; set; }
 

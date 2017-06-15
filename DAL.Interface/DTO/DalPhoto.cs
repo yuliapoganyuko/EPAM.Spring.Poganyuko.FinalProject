@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DAL.Interface.DTO
 {
-    public class Photo: IEntity
+    public class DalPhoto: IEntity
     {
         public int Id { get; set; }
 
@@ -15,13 +15,13 @@ namespace DAL.Interface.DTO
         
         public byte[] Image { get; set; }
 
-        public virtual ICollection<Tag> Tags { get; set; }
-        public virtual ICollection<Like> Likes { get; set; }
+        public virtual ICollection<DalTag> Tags { get; set; }
+        public virtual ICollection<DalLike> Likes { get; set; }
 
-        public Photo()
+        public DalPhoto()
         {
-            Tags = new HashSet<Tag>();
-            Likes = new HashSet<Like>();
+            Tags = new HashSet<DalTag>();
+            Likes = new HashSet<DalLike>();
         }
     }
 }

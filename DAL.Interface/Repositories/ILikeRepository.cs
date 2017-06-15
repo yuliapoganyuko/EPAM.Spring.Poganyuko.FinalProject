@@ -2,7 +2,7 @@
 
 namespace DAL.Interface.Repositories
 {
-    public interface ILikeRepository: IRepository<Like>
+    public interface ILikeRepository: IRepository<DalLike>
     {
     }
 }
