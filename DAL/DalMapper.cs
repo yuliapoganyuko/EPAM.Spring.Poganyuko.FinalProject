@@ -94,7 +94,7 @@ namespace DAL
         {
             if (tag == null)
                 return null;
-            return new Tag()
+            return new DalTag()
             {
                 Id = tag.Id,
                 Text = tag.Text,
