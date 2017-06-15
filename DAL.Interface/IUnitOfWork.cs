@@ -5,17 +5,17 @@ namespace DAL.Interface
 {
     public interface IUnitOfWork: IDisposable
     {
-        IUser Users { get; }
+        IUserRepository Users { get; }
 
-        IRole Roles { get; }
+        IRoleRepository Roles { get; }
 
-        IProfile Profiles { get; }
+        IProfileRepository Profiles { get; }
 
-        IPhoto Photos { get; }
+        IPhotoRepository Photos { get; }
 
-        ILike Likes { get; }
+        ILikeRepository Likes { get; }
 
-        ITag Tags { get; }
+        ITagRepository Tags { get; }
 
         void Commit();
     }

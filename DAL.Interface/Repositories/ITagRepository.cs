@@ -2,7 +2,7 @@
 
 namespace DAL.Interface.Repositories
 {
-    public interface ITag: IRepository<Tag>
+    public interface ITagRepository: IRepository<Tag>
     {
     }
 }

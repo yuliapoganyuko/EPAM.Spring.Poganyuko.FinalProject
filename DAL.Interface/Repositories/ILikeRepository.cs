@@ -2,7 +2,7 @@
 
 namespace DAL.Interface.Repositories
 {
-    public interface IUser: IRepository<User>
+    public interface ILikeRepository: IRepository<Like>
     {
     }
 }

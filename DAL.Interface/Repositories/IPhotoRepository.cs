@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DAL.Interface.Repositories
 {
-    public interface IPhoto: IRepository<Photo>
+    public interface IPhotoRepository: IRepository<Photo>
     {
         IEnumerable<Like> GetLikesForPhoto(int photoId);
 
