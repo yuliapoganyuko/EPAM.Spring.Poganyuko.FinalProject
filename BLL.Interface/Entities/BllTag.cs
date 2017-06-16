@@ -2,7 +2,7 @@
 
 namespace BLL.Interface.Entities
 {
-    public class BllTag
+    public class BllTag: IBllEntity
     {
         public int Id { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace BLL.Interface.Entities
 {
-    public class BllRole
+    public class BllRole: IBllEntity
     {
         public int Id { get; set; }
 

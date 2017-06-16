@@ -1,6 +1,6 @@
 ﻿namespace BLL.Interface.Entities
 {
-    public class BllLike
+    public class BllLike: IBllEntity
     {
         public int Id { get; set; }
 

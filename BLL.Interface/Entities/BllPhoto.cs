@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BLL.Interface.Entities
 {
-    public class BllPhoto
+    public class BllPhoto: IBllEntity
     {
         public int Id { get; set; }
 
