@@ -6,6 +6,6 @@
 
         public virtual DalUser User { get; set; }
 
-        public byte[] Avatar { get; set; }
+        public byte[] Avatar { get; set; } 
     }
 }
