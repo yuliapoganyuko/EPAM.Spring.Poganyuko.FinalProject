@@ -11,7 +11,6 @@ namespace DAL.Repositories
 {
     public class PhotoRepository : IPhotoRepository
     {
-
         private readonly DbContext dbContext;
 
         public PhotoRepository(DbContext context)
@@ -21,7 +20,10 @@ namespace DAL.Repositories
 
         public void AddNewLike(DalLike like)
         {
-            throw new NotImplementedException();
+            Photo photo = dbContext.Set<Photo>().First(p => p.Id == like.PhotoId);
+            dbContext.Set<Photo>().Attach(photo);
+            photo.Likes.Add(like.ToOrmEntity());
+            dbContext.SaveChanges();
         }
 
         public void AddNewTag(DalTag tag)
@@ -70,17 +72,23 @@ namespace DAL.Repositories
 
         public IEnumerable<DalLike> GetLikesForPhoto(int photoId)
         {
-            throw new NotImplementedException();
+            Photo photo = dbContext.Set<Photo>().First(p => p.Id == photoId);
+            return photo.Likes.ToList().Select(l => l.ToDalEntity());
         }
 
         public IEnumerable<DalTag> GetTagsForPhoto(int photoId)
         {
-            throw new NotImplementedException();
+            Photo photo = dbContext.Set<Photo>().First(p => p.Id == photoId);
+            return photo.Tags.ToList().Select(p => p.ToDalEntity());
         }
 
         public void RemoveLike(DalLike like)
         {
-            throw new NotImplementedException();
+            Photo photo = dbContext.Set<Photo>().First(p => p.Id == like.PhotoId);
+            photo.Likes.Remove(like.ToOrmEntity());
+            Like ormLike = dbContext.Set<Like>().First(l => l.UserId == like.UserId && l.PhotoId == like.PhotoId);
+            dbContext.Set<Like>().Remove(ormLike);
+            dbContext.SaveChanges();
         }
     }
 }
