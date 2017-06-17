@@ -21,7 +21,10 @@ namespace BLL.Services
 
         public void AddNewLike(BllLike like)
         {
-            throw new NotImplementedException();
+            if (ReferenceEquals(like, null))
+                throw new ArgumentNullException();
+            repository.AddNewLike(like.ToDalEntity());
+            unitOfWork.Commit();
         }
 
         public void Create(BllPhoto entity)
@@ -54,17 +57,24 @@ namespace BLL.Services
 
         public IEnumerable<BllLike> GetLikesForPhoto(int photoId)
         {
-            throw new NotImplementedException();
+            if (photoId < 0)
+                throw new ArgumentOutOfRangeException();
+            return repository.GetLikesForPhoto(photoId).Select(l => l.ToBllEntity()).ToList();
         }
 
         public IEnumerable<BllTag> GetTagsForPhoto(int photoId)
         {
-            throw new NotImplementedException();
+            if (photoId < 0)
+                throw new ArgumentOutOfRangeException();
+            return repository.GetTagsForPhoto(photoId).Select(t => t.ToBllEntity()).ToList();
         }
 
         public void RemoveLike(BllLike like)
         {
-            throw new NotImplementedException();
+            if (ReferenceEquals(like, null))
+                throw new ArgumentNullException();
+            repository.RemoveLike(like.ToDalEntity());
+            unitOfWork.Commit();
         }
 
         public void Update(BllPhoto entity)
