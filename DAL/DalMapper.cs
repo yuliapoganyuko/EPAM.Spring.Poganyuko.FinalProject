@@ -11,7 +11,7 @@ namespace DAL
 
         public static Tag ToOrmEntity(this DalTag dalTag)
         {
-            if (dalTag == null)
+            if (ReferenceEquals(dalTag, null))
                 return null;
             return new Tag()
             {
@@ -23,7 +23,7 @@ namespace DAL
 
         public static Like ToOrmEntity(this DalLike dalLike)
         {
-            if (dalLike == null)
+            if (ReferenceEquals(dalLike, null))
                 return null;
             return new Like()
             {
@@ -35,18 +35,18 @@ namespace DAL
 
         public static Profile ToOrmEntity(this DalProfile dalProfile)
         {
-            if (dalProfile == null)
+            if (ReferenceEquals(dalProfile, null))
                 return null;
             return new Profile()
             {
                 UserId = dalProfile.Id,
-                Avatar = dalProfile.Avatar == null ? null : CopyImage(dalProfile.Avatar)
+                Avatar = ReferenceEquals(dalProfile.Avatar, null) ? null : CopyImage(dalProfile.Avatar)
             };
         }
 
         public static User ToOrmEntity(this DalUser dalUser)
         {
-            if (dalUser == null)
+            if (ReferenceEquals(dalUser, null))
                 return null;
             return new User()
             {
@@ -60,13 +60,13 @@ namespace DAL
 
         public static Photo ToOrmEntity(this DalPhoto dalPhoto)
         {
-            if (dalPhoto == null)
+            if (ReferenceEquals(dalPhoto, null))
                 return null;
             return new Photo()
             {
                 Id = dalPhoto.Id,
                 UserId = dalPhoto.UserId,
-                Image = dalPhoto.Image == null ? null : CopyImage(dalPhoto.Image),
+                Image = ReferenceEquals(dalPhoto.Image, null) ? null : CopyImage(dalPhoto.Image),
                 Description = dalPhoto.Description,
                 Time = dalPhoto.Time,
                 Likes = dalPhoto.Likes.Select(l => l.ToOrmEntity()).ToList(),
@@ -76,7 +76,7 @@ namespace DAL
 
         public static Role ToOrmEntity(this DalRole dalRole)
         {
-            if (dalRole == null)
+            if (ReferenceEquals(dalRole, null))
                 return null;
             return new Role()
             {
@@ -92,7 +92,7 @@ namespace DAL
 
         public static DalTag ToDalEntity(this Tag tag)
         {
-            if (tag == null)
+            if (ReferenceEquals(tag, null))
                 return null;
             return new DalTag()
             {
@@ -104,7 +104,7 @@ namespace DAL
 
         public static DalLike ToDalEntity(this Like like)
         {
-            if (like == null)
+            if (ReferenceEquals(like, null))
                 return null;
             return new DalLike()
             {
@@ -116,18 +116,18 @@ namespace DAL
 
         public static DalProfile ToDalEntity(this Profile profile)
         {
-            if (profile == null)
-                return null;
+            if (ReferenceEquals(profile, null))
+                    return null;
             return new DalProfile()
             {
                 Id = profile.UserId,
-                Avatar = profile.Avatar == null ? null : CopyImage(profile.Avatar)
+                Avatar = ReferenceEquals(profile.Avatar, null) ? null : CopyImage(profile.Avatar)
             };
         }
 
         public static DalUser ToDalEntity(this User user)
         {
-            if (user == null)
+            if (ReferenceEquals(user, null))
                 return null;
             return new DalUser()
             {
@@ -141,13 +141,13 @@ namespace DAL
 
         public static DalPhoto ToDalEntity(this Photo photo)
         {
-            if (photo == null)
+            if (ReferenceEquals(photo, null))
                 return null;
             return new DalPhoto()
             {
                 Id = photo.Id,
                 UserId = photo.UserId,
-                Image = photo.Image == null ? null : CopyImage(photo.Image),
+                Image = ReferenceEquals(photo.Image, null) ? null : CopyImage(photo.Image),
                 Description = photo.Description,
                 Time = photo.Time,
                 Likes = photo.Likes.Select(l => l.ToDalEntity()).ToList(),
@@ -157,7 +157,7 @@ namespace DAL
 
         public static DalRole ToDalEntity(this Role role)
         {
-            if (role == null)
+            if (ReferenceEquals(role, null))
                 return null;
             return new DalRole()
             {
