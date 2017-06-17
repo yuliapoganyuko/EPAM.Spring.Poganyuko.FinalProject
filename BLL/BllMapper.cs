@@ -12,7 +12,7 @@ namespace BLL
 
         public static DalTag ToDalEntity(this BllTag bllTag)
         {
-            if (bllTag == null)
+            if (ReferenceEquals(bllTag, null))
                 return null;
             return new DalTag()
             {
@@ -24,7 +24,7 @@ namespace BLL
 
         public static DalLike ToDalEntity(this BllLike bllLike)
         {
-            if (bllLike == null)
+            if (ReferenceEquals(bllLike, null))
                 return null;
             return new DalLike()
             {
@@ -36,18 +36,18 @@ namespace BLL
 
         public static DalProfile ToDalEntity(this BllProfile bllProfile)
         {
-            if (bllProfile == null)
+            if (ReferenceEquals(bllProfile, null))
                 return null;
             return new DalProfile()
             {
                 Id = bllProfile.Id,
-                Avatar = bllProfile.Avatar == null ? null : CopyImage(bllProfile.Avatar)
+                Avatar = ReferenceEquals(bllProfile.Avatar, null) ? null : CopyImage(bllProfile.Avatar)
             };
         }
 
         public static DalUser ToDalEntity(this BllUser bllUser)
         {
-            if (bllUser == null)
+            if (ReferenceEquals(bllUser, null))
                 return null;
             return new DalUser()
             {
@@ -61,13 +61,13 @@ namespace BLL
 
         public static DalPhoto ToDalEntity(this BllPhoto bllPhoto)
         {
-            if (bllPhoto == null)
+            if (ReferenceEquals(bllPhoto, null))
                 return null;
             return new DalPhoto()
             {
                 Id = bllPhoto.Id,
                 UserId = bllPhoto.UserId,
-                Image = bllPhoto.Image == null ? null : CopyImage(bllPhoto.Image),
+                Image = ReferenceEquals(bllPhoto.Image, null) ? null : CopyImage(bllPhoto.Image),
                 Description = bllPhoto.Description,
                 Time = bllPhoto.Time,
                 Likes = bllPhoto.Likes.Select(l => l.ToDalEntity()).ToList(),
@@ -77,7 +77,7 @@ namespace BLL
 
         public static DalRole ToDalEntity(this BllRole bllRole)
         {
-            if (bllRole == null)
+            if (ReferenceEquals(bllRole, null))
                 return null;
             return new DalRole()
             {
@@ -93,7 +93,7 @@ namespace BLL
 
         public static BllTag ToBllEntity(this DalTag dalTag)
         {
-            if (dalTag == null)
+            if (ReferenceEquals(dalTag, null))
                 return null;
             return new BllTag()
             {
@@ -105,7 +105,7 @@ namespace BLL
 
         public static BllLike ToBllEntity(this DalLike dalLike)
         {
-            if (dalLike == null)
+            if (ReferenceEquals(dalLike, null))
                 return null;
             return new BllLike()
             {
@@ -117,18 +117,18 @@ namespace BLL
 
         public static BllProfile ToBllEntity(this DalProfile dalProfile)
         {
-            if (dalProfile == null)
+            if (ReferenceEquals(dalProfile, null))
                 return null;
             return new BllProfile()
             {
                 Id = dalProfile.Id,
-                Avatar = dalProfile.Avatar == null ? null : CopyImage(dalProfile.Avatar)
+                Avatar = ReferenceEquals(dalProfile.Avatar, null) ? null : CopyImage(dalProfile.Avatar)
             };
         }
 
         public static BllUser ToBllEntity(this DalUser dalUser)
         {
-            if (dalUser == null)
+            if (ReferenceEquals(dalUser, null))
                 return null;
             return new BllUser()
             {
@@ -142,13 +142,13 @@ namespace BLL
 
         public static BllPhoto ToBllEntity(this DalPhoto dalPhoto)
         {
-            if (dalPhoto == null)
+            if (ReferenceEquals(dalPhoto, null))
                 return null;
             return new BllPhoto()
             {
                 Id = dalPhoto.Id,
                 UserId = dalPhoto.UserId,
-                Image = dalPhoto.Image == null ? null : CopyImage(dalPhoto.Image),
+                Image = ReferenceEquals(dalPhoto.Image, null) ? null : CopyImage(dalPhoto.Image),
                 Description = dalPhoto.Description,
                 Time = dalPhoto.Time,
                 Likes = dalPhoto.Likes.Select(l => l.ToBllEntity()).ToList(),
@@ -158,7 +158,7 @@ namespace BLL
 
         public static BllRole ToBllEntity(this DalRole dalRole)
         {
-            if (dalRole == null)
+            if (ReferenceEquals(dalRole, null))
                 return null;
             return new BllRole()
             {
