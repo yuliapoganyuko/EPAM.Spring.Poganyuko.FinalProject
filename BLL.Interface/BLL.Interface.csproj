@@ -40,14 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBllEntity.cs" />
-    <Compile Include="IService.cs" />
+    <Compile Include="Entities\IBllEntity.cs" />
+    <Compile Include="Services\IService.cs" />
     <Compile Include="Entities\BllLike.cs" />
     <Compile Include="Entities\BllPhoto.cs" />
     <Compile Include="Entities\BllProfile.cs" />
     <Compile Include="Entities\BllRole.cs" />
     <Compile Include="Entities\BllTag.cs" />
     <Compile Include="Entities\BllUser.cs" />
+    <Compile Include="ParameterTypeVisitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ILikeService.cs" />
     <Compile Include="Services\IPhotoService.cs" />

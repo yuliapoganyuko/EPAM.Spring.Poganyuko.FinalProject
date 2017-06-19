@@ -5,6 +5,8 @@ using BLL.Interface.Services;
 using DAL.Interface;
 using DAL.Interface.Repositories;
 using System.Linq;
+using System.Linq.Expressions;
+using DAL.Interface.DTO;
 
 namespace BLL.Services
 {
@@ -48,11 +50,25 @@ namespace BLL.Services
             return repository.GetAll().Select(entity => entity.ToBllEntity()).ToList();
         }
 
+        public IEnumerable<BllPhoto> GetAll(Expression<Func<BllPhoto, bool>> predicate)
+        {
+            var visitor = new ParameterTypeVisitor<BllLike, DalPhoto>(Expression.Parameter(typeof(DalPhoto), predicate.Parameters[0].Name));
+            var expression = Expression.Lambda<Func<DalPhoto, bool>>(visitor.Visit(predicate.Body), visitor.ParameterExpression);
+            return repository.GetAll(expression).Select(p => p.ToBllEntity()).ToList();
+        }
+
         public BllPhoto GetById(int id)
         {
             if (id < 0)
                 throw new ArgumentOutOfRangeException();
             return repository.GetById(id)?.ToBllEntity();
+        }
+
+        public BllPhoto GetByPredicate(Expression<Func<BllPhoto, bool>> predicate)
+        {
+            var visitor = new ParameterTypeVisitor<BllLike, DalPhoto>(Expression.Parameter(typeof(DalPhoto), predicate.Parameters[0].Name));
+            var expression = Expression.Lambda<Func<DalPhoto, bool>>(visitor.Visit(predicate.Body), visitor.ParameterExpression);
+            return repository.GetByPredicate(expression).ToBllEntity();
         }
 
         public IEnumerable<BllLike> GetLikesForPhoto(int photoId)

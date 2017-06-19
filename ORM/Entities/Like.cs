@@ -13,11 +13,9 @@ namespace ORM.Entities
 
         [Required]
         public int UserId { get; set; }
-
-       // [ForeignKey("UserId")]
+        
         public virtual Profile Profile { get; set; }
-
-       // [ForeignKey("PhotoId")]
+        
         public virtual Photo Photo { get; set; }
     }
 }

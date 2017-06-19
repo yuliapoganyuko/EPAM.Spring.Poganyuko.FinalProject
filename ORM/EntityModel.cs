@@ -10,7 +10,7 @@ namespace ORM
             Database.SetInitializer(new DbInitializer());
         }
 
-        public EntityModel(): base("name=EntityModel") {}
+        public EntityModel(): base("EntityModel") {}
 
         public virtual DbSet<Like> Likes { get; set; }
         public virtual DbSet<Profile> PersonalPages { get; set; }

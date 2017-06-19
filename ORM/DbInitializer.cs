@@ -8,63 +8,50 @@ namespace ORM
     {
         protected override void Seed(EntityModel context)
         {
-            var commonUserRole = new Role
-            {
-                Name = "User"
-            };
-            var adminRole = new Role
-            {
-                Name = "Admin"
-            };
+            var commonUserRole = AddRole("User");
+            var adminRole = AddRole("Admin");
             context.Roles.Add(commonUserRole);
             context.Roles.Add(adminRole);
             context.SaveChanges();
 
-            var user1 = new User
-            {
-                Email = "yulia.poganyuko@gmail.com",
-                Password = Crypto.HashPassword("qwerty"),
-                Role = adminRole,
-                Login = "Admin"
-            };
-            var user2 = new User
-            {
-                Email = "yulia.poganyuko@yandex.ru",
-                Password = Crypto.HashPassword("qwerty"),
-                Role = commonUserRole,
-                Login = "Poganyuko"
-            };
-
+            var user1 = AddUser("yulia.poganyuko@gmail.com", "Admin", Crypto.HashPassword("qwerty"), adminRole);
+            var user2 = AddUser("yulia.poganyuko@yandex.ru", "Poganyuko", Crypto.HashPassword("qwerty"), commonUserRole);
             context.Users.Add(user1);
             context.Users.Add(user2);
             context.SaveChanges();
 
-            var personalPage1 = new Profile
-            {
-                User = user1
-            };
-            var personalPage2 = new Profile
-            {
-                User = user2
-            };
+            var personalPage1 = AddProfile(user1);
+            var personalPage2 = AddProfile(user2);
             context.PersonalPages.Add(personalPage1);
             context.PersonalPages.Add(personalPage2);
             context.SaveChanges();
         }
 
-        //private void InitializeRoles(EntityModel context)
-        //{
-        //    var commonUserRole = new Role
-        //    {
-        //        Name = "User"
-        //    };
-        //    var adminRole = new Role
-        //    {
-        //        Name = "Admin"
-        //    };
-        //    context.Roles.Add(commonUserRole);
-        //    context.Roles.Add(adminRole);
-        //    context.SaveChanges();
-        //}
+        private Role AddRole(string name)
+        {
+            return new Role
+            {
+                Name = name
+            };
+        }
+
+        private User AddUser(string email, string login, string password, Role role)
+        {
+            return new User
+            {
+                Email = email,
+                Login = login,
+                Password = Crypto.HashPassword(password),
+                Role = role,
+            };
+        }
+
+        private Profile AddProfile(User user)
+        {
+            return new Profile
+            {
+                User = user
+            };
+        }
     }
 }

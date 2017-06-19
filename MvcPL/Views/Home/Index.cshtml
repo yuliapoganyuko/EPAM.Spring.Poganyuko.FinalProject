@@ -1,0 +1,77 @@
+﻿<!--{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>-->
+@{
+    ViewBag.Title = "Main Page";
+}
+<img class="main-background" src=@Url.Content("~/Content/Images/main-background.jpg") />
+<div class="container">
+    <div class="row main-page-info-block">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="col-md-4">
+                <img alt="Photocamera" class="main-page-info-block-cameraimg img-responsive" src=@Url.Content("~/Content/Images/main-page-camera.png") height="150" />
+                <div class="main-page-text-block">
+                    <p class="text-center">
+                        <strong>
+                            Share your inspiration! <br />
+                            Share your photos!<br />
+                        </strong>
+                    </p>
+                    <p class="text-justify">
+                        PhotoShare is a wonderful place for sharing your photography expirience. Get exposure.
+                        Connect with other enthusiasts and learn more about the craft.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                <p class="text-justify">
+                    “You don't make a photograph just with a camera.
+                    You bring to the act of photography all the pictures you have seen, the books you have read,
+                    the music you have heard, the people you have loved.”
+                </p>
+                <p class="text-left">
+                    <strong>― Ansel Adams</strong>
+                </p>
+                <img alt="Vignette" class="main-page-info-block-vignetteimg img-responsive" src=@Url.Content("~/Content/Images/vignette.jpg") height="130" />
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <hr />
+    <h3 class="text-center well">Recent photos</h3>
+    <div id="photos">
+        @{ //Html.RenderAction("PhotosList", "Photo"); 
+
+        }
+    </div>
+</div>

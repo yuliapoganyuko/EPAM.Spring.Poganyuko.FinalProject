@@ -11,8 +11,6 @@ namespace DAL.Interface.Repositories
 
         void AddNewLike(DalLike like);
 
-        void AddNewTag(DalTag tag);
-
         void RemoveLike(DalLike like);
     }
 }

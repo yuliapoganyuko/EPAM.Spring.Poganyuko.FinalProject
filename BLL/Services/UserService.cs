@@ -5,6 +5,8 @@ using BLL.Interface.Services;
 using DAL.Interface;
 using DAL.Interface.Repositories;
 using System.Linq;
+using System.Linq.Expressions;
+using DAL.Interface.DTO;
 
 namespace BLL.Services
 {
@@ -40,11 +42,25 @@ namespace BLL.Services
             return repository.GetAll().Select(entity => entity.ToBllEntity()).ToList();
         }
 
+        public IEnumerable<BllUser> GetAll(Expression<Func<BllUser, bool>> predicate)
+        {
+            var visitor = new ParameterTypeVisitor<BllUser, DalUser>(Expression.Parameter(typeof(DalUser), predicate.Parameters[0].Name));
+            var expression = Expression.Lambda<Func<DalUser, bool>>(visitor.Visit(predicate.Body), visitor.ParameterExpression);
+            return repository.GetAll(expression).Select(u => u.ToBllEntity()).ToList();
+        }
+
         public BllUser GetById(int id)
         {
             if (id < 0)
                 throw new ArgumentOutOfRangeException();
             return repository.GetById(id)?.ToBllEntity();
+        }
+
+        public BllUser GetByPredicate(Expression<Func<BllUser, bool>> predicate)
+        {
+            var visitor = new ParameterTypeVisitor<BllUser, DalUser>(Expression.Parameter(typeof(DalUser), predicate.Parameters[0].Name));
+            var expression = Expression.Lambda<Func<DalUser, bool>>(visitor.Visit(predicate.Body), visitor.ParameterExpression);
+            return repository.GetByPredicate(expression).ToBllEntity();
         }
 
         public void Update(BllUser entity)

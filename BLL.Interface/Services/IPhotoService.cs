@@ -11,8 +11,6 @@ namespace BLL.Interface.Services
 
         void AddNewLike(BllLike like);
 
-        //void AddNewTag(DalTag tag);
-
         void RemoveLike(BllLike like);
     }
 }

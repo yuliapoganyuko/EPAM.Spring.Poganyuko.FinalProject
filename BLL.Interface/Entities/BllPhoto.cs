@@ -11,7 +11,7 @@ namespace BLL.Interface.Entities
 
         public DateTime Time { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         public byte[] Image { get; set; }
 

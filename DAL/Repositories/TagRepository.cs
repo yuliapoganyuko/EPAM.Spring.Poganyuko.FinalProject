@@ -5,6 +5,9 @@ using System.Data.Entity.Migrations;
 using DAL.Interface.DTO;
 using DAL.Interface.Repositories;
 using ORM.Entities;
+using System.Linq.Expressions;
+using System;
+using DAL.Interface;
 
 namespace DAL.Repositories
 {
@@ -19,7 +22,7 @@ namespace DAL.Repositories
         
         public void Create(DalTag entity)
         {
-            if (entity != null)
+            if (!ReferenceEquals(entity, null))
             {
                 dbContext.Set<Tag>().Add(entity.ToOrmEntity());
                 dbContext.SaveChanges();
@@ -28,9 +31,9 @@ namespace DAL.Repositories
 
         public void Delete(DalTag entity)
         {
-            if (entity != null)
+            if (!ReferenceEquals(entity, null))
             {
-                Tag tag = dbContext.Set<Tag>().Single(t => t.Id == entity.Id);
+                Tag tag = dbContext.Set<Tag>().Find(entity.Id);
                 dbContext.Set<Tag>().Remove(tag);
                 dbContext.SaveChanges();
             }
@@ -41,15 +44,28 @@ namespace DAL.Repositories
             return dbContext.Set<Tag>().Select(t => t.ToDalEntity()).ToList();
         }
 
+        public IEnumerable<DalTag> GetAll(Expression<Func<DalTag, bool>> predicate)
+        {
+            var visitor = new ParameterTypeVisitor<DalTag, Tag>(Expression.Parameter(typeof(Tag), predicate.Parameters[0].Name));
+            var expression = Expression.Lambda<Func<Tag, bool>>(visitor.Visit(predicate.Body), visitor.ParameterExpression);
+            var tags = dbContext.Set<Tag>().Where(expression).ToList();
+            return tags.Select(tag => tag.ToDalEntity());
+        }
+
         public DalTag GetById(int id)
         {
-            Tag tag = dbContext.Set<Tag>().FirstOrDefault(t => t.Id == id);
+            Tag tag = dbContext.Set<Tag>().Find(id);
             return tag?.ToDalEntity();
+        }
+
+        public DalTag GetByPredicate(Expression<Func<DalTag, bool>> predicate)
+        {
+            return GetAll(predicate).FirstOrDefault();
         }
 
         public void Update(DalTag entity)
         {
-            if (entity != null)
+            if (!ReferenceEquals(entity, null))
             {
                 dbContext.Set<Tag>().AddOrUpdate<Tag>(entity.ToOrmEntity());
                 dbContext.SaveChanges();

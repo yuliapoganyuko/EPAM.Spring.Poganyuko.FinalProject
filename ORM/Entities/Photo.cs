@@ -12,11 +12,10 @@ namespace ORM.Entities
 
         public string Description { get; set; }
 
-        [Required]//[Display(Name = "Created")]
-        public DateTime Time { get; set; }
-
         [Required]
-        public int UserId { get; set; }
+        public DateTime Time { get; set; }
+        
+        public int? UserId { get; set; }
 
         [ForeignKey("UserId")]
         public virtual Profile Profile { get; set; }

@@ -6,6 +6,8 @@ using DAL.Interface.DTO;
 using DAL.Interface.Repositories;
 using ORM.Entities;
 using System;
+using System.Linq.Expressions;
+using DAL.Interface;
 
 namespace DAL.Repositories
 {
@@ -20,7 +22,7 @@ namespace DAL.Repositories
 
         public void Create(DalLike entity)
         {
-            if (entity != null)
+            if (!ReferenceEquals(entity, null))
             {
                 dbContext.Set<Like>().Add(entity.ToOrmEntity());
                 dbContext.SaveChanges();
@@ -29,9 +31,9 @@ namespace DAL.Repositories
 
         public void Delete(DalLike entity)
         {
-            if (entity != null)
+            if (!ReferenceEquals(entity, null))
             {
-                Like like = dbContext.Set<Like>().Single(l => l.Id == entity.Id);
+                Like like = dbContext.Set<Like>().Find(entity.Id);
                 dbContext.Set<Like>().Remove(like);
                 dbContext.SaveChanges();
             }
@@ -42,15 +44,28 @@ namespace DAL.Repositories
             return dbContext.Set<Like>().Select(l => l.ToDalEntity()).ToList();
         }
 
+        public IEnumerable<DalLike> GetAll(Expression<Func<DalLike, bool>> predicate)
+        {
+            var visitor = new ParameterTypeVisitor<DalLike, Like>(Expression.Parameter(typeof(Like), predicate.Parameters[0].Name));
+            var expression = Expression.Lambda<Func<Like, bool>>(visitor.Visit(predicate.Body), visitor.ParameterExpression);
+            var likes = dbContext.Set<Like>().Where(expression).ToList();
+            return likes.Select(like => like.ToDalEntity());
+        }
+
         public DalLike GetById(int id)
         {
-            Like like = dbContext.Set<Like>().FirstOrDefault(l => l.Id == id);
+            Like like = dbContext.Set<Like>().Find(id);
             return like?.ToDalEntity();
+        }
+
+        public DalLike GetByPredicate(Expression<Func<DalLike, bool>> predicate)
+        {
+            return GetAll(predicate).FirstOrDefault();
         }
 
         public void Update(DalLike entity)
         {
-            if (entity != null)
+            if (!ReferenceEquals(entity, null))
             {
                 dbContext.Set<Like>().AddOrUpdate<Like>(entity.ToOrmEntity());
                 dbContext.SaveChanges();
